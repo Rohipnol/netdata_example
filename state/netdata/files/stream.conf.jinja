@@ -1,10 +1,10 @@
 [stream]
 
-    enabled = yes
+    enabled = {{ netdata.stream_enabled | default('yes', True) }}
 
     destination = {{ datacenter }}{{ netdata.master }}:{{ netdata.port }}
 
-    api key = {{ pillar.get('confidential', {}).get('netdata').get('api_key', '') }}
+    api key = {{ api_key }}
 
     timeout seconds = {{ netdata.timeout | default('60', True) }}
 

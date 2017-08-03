@@ -27,5 +27,6 @@ netdata_stream_config:
     - defaults:
         netdata: {{ netdata }}
         datacenter: {{ pillar.get('datacenter', '') }}
+        api_key: {{ pillar.get('confidential', {}).get('netdata').get('api_key', '') }}
     - listen_in:
       - service: {{ netdata.service }}
