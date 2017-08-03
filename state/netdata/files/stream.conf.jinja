@@ -1,0 +1,17 @@
+[stream]
+
+    enabled = yes
+
+    destination = {{ datacenter }}{{ netdata.master }}:{{ netdata.port }}
+
+    api key = {{ pillar.get('confidential', {}).get('netdata').get('api_key', '') }}
+
+    timeout seconds = {{ netdata.timeout | default('60', True) }}
+
+    default port = {{ netdata.port }}
+
+    buffer size bytes = {{ netdata.buffer_size | default('1048576', True) }}
+
+    reconnect delay seconds = {{ netdata.reconnect_delay | default('5', True) }}
+
+    initial clock resync iterations = {{ netdata.clock_resync | default('60', True) }}

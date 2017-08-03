@@ -1,0 +1,13 @@
+{# Jinja magic #}
+{# Merges pillar dicts: 'map' <- 'config' <- 'overrides' #}
+
+{%- set defaults = pillar.get('netdata', {}) -%}
+{%- set netdata = salt['grains.filter_by'](
+      defaults,
+      merge=salt['grains.filter_by'](
+        defaults.get('map', {}),
+        merge=defaults.get('overrides', {}),
+      ),
+      base='config',
+    )
+-%}
